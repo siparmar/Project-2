@@ -26,7 +26,7 @@ public class ApplicationContextConfig {
 		System.out.println("Starting of the method");
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.h2.Driver");
-		dataSource.setUrl("jdbc:h2:tcp://localhost/~/new1");
+		dataSource.setUrl("jdbc:h2:tcp://localhost/~/project2");
 		dataSource.setUsername("sa");
 		dataSource.setPassword("sa");
 		return dataSource;
