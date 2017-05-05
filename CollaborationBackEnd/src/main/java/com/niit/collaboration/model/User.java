@@ -1,16 +1,25 @@
 package com.niit.collaboration.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "user")
-public class User extends BaseDomain{
+public class User extends BaseDomain {
 
 	@Id
-	private int id;
-	
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int user_id;
+
 	private String name;
 
 	private String password;
@@ -22,14 +31,32 @@ public class User extends BaseDomain{
 	private String contact;
 
 	private char isOnline;
-	//getters and setters
 	
-	public int getId() {
-		return id;
+	/*
+	@ManyToOne
+	@JoinColumn(name="jobApplication_Id")
+	private JobApplication jobApplication;
+	
+	@OneToMany(mappedBy ="user_id" , fetch=FetchType.EAGER)
+	private List<User> user;
+	*/
+	
+	// getters and setters
+/*
+	public JobApplication getJobApplication() {
+		return jobApplication;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setJobApplication(JobApplication jobApplication) {
+		this.jobApplication = jobApplication;
+	}
+*/
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
 	}
 
 	public String getName() {

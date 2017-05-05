@@ -11,6 +11,14 @@ public interface UserDAO {
 	public List<User> list();
 	
 	//If you are not using spring security
-	public boolean isvalidCredentials(String id , String password);
+	public boolean isvalidCredentials(String user_id , String password);
+	
+	public boolean save(User user);
+
+	public boolean update(User user);
+
+	//public boolean validate(String id, String password );
+	
+
 	
 }

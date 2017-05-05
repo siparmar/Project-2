@@ -2,38 +2,40 @@ package com.niit.collaboration.model;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name ="job")
+@Table(name = "job")
 @Component
-public class Job extends BaseDomain{
+public class Job extends BaseDomain {
 
 	@Id
-	private long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long job_id;
 
 	private String title;
-	
+
 	private String description;
-	
-	private Date dateTime;
-	
+
+	private Date date_time;
+
 	private String qualification;
-	
+
 	private char status; // V - Vacant , C - Closed
-	
-	
-	//getters and setters
-	
-	public long getId() {
-		return id;
+
+	// getters and setters
+
+	public long getJob_id() {
+		return job_id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setJob_id(long job_id) {
+		this.job_id = job_id;
 	}
 
 	public String getTitle() {
@@ -52,12 +54,12 @@ public class Job extends BaseDomain{
 		this.description = description;
 	}
 
-	public Date getDateTime() {
-		return dateTime;
+	public Date getDate_time() {
+		return date_time;
 	}
 
-	public void setDateTime(Date dateTime) {
-		this.dateTime = dateTime;
+	public void setDate_time(Date date_time) {
+		this.date_time = date_time;
 	}
 
 	public String getQualification() {

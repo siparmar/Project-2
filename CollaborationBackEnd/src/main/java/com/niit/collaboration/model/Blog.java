@@ -3,7 +3,10 @@ package com.niit.collaboration.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -14,12 +17,14 @@ import org.springframework.stereotype.Component;
 public class Blog extends BaseDomain{
 
 	@Id
-	private int id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int Blog_id;
 	private String title;
 	private String descritpion;
 	
+	/*@ManyToOne
 	private String userId;
-	
+	*/
 	private Date dateTime;
 	private char status;
 	private String reason;
@@ -27,12 +32,14 @@ public class Blog extends BaseDomain{
 	
 	
 	//getters and setters
-	public int getId() {
-		return id;
+	
+	public int getBlog_id() {
+		return Blog_id;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setBlog_id(int blog_id) {
+		Blog_id = blog_id;
 	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -45,12 +52,12 @@ public class Blog extends BaseDomain{
 	public void setDescritpion(String descritpion) {
 		this.descritpion = descritpion;
 	}
-	public String getUserId() {
+	/*public String getUserId() {
 		return userId;
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
+	}*/
 	public Date getDateTime() {
 		return dateTime;
 	}

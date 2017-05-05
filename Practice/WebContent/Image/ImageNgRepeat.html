@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<div ng-controller="MyController">
+		<h3>{{title}}</h3>
+
+		<div ng-repeat="x in products">
+			<p>{{x.name}}</p>
+			<p>{{x.price | currency}}</p>
+			<p>{{x.pubdate | date}}</p>
+			<div class ="col-md-6"><img src="Image/1.jpg">
+			</div>
+			<hr>
+		</div>
+	</div>
+</body>
+
+<script src="../Image/ImageNgRepeatController.js"></script>
+</html>

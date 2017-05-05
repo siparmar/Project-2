@@ -5,6 +5,8 @@ import java.sql.Clob;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,9 +18,10 @@ import org.springframework.stereotype.Component;
 public class Event extends BaseDomain{
 
 	@Id
-	private String id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private String event_id;
 	
-	private String name;
+	private String event_name;
 
 	private String venue;
 
@@ -28,20 +31,24 @@ public class Event extends BaseDomain{
 
 	private Blob image;
 
-	public String getId() {
-		return id;
+	
+	
+	//getters and setters
+
+	public String getEvent_id() {
+		return event_id;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setEvent_id(String event_id) {
+		this.event_id = event_id;
 	}
 
-	public String getName() {
-		return name;
+	public String getEvent_name() {
+		return event_name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setEvent_name(String event_name) {
+		this.event_name = event_name;
 	}
 
 	public String getVenue() {

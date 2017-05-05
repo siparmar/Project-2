@@ -2,19 +2,32 @@ package com.niit.collaboration.daoimpl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.niit.collaboration.dao.UserDAO;
 import com.niit.collaboration.model.User;
 
+@Transactional
+@Repository("UserDAO")
 public class UserDAOImpl implements UserDAO {
 
-	public SessionFactory sessionFactory;
+	@Autowired
+	private SessionFactory sessionFactory;
 
-	public User get(String id) {
+	private Session getSession() {
+		return sessionFactory.getCurrentSession();
+	}
 
-		return (User) sessionFactory.getCurrentSession().load(User.class, id);
+	public User get(String user_id) {
+
+		return (User) sessionFactory.getCurrentSession().load(User.class, user_id);
 	}
 
 	public List<User> list() {
@@ -22,9 +35,9 @@ public class UserDAOImpl implements UserDAO {
 		return sessionFactory.getCurrentSession().createQuery("from User").list();
 	}
 
-	public boolean isvalidCredentials(String id, String password) {
-		Query query = sessionFactory.getCurrentSession().createQuery("from User where id= ? and password =?");
-		query.setString(1, id);
+	public boolean isvalidCredentials(String user_id, String password) {
+		Query query = sessionFactory.getCurrentSession().createQuery("from User where user_id= ? and password =?");
+		query.setString(1, user_id);
 		query.setString(2, password);
 
 		if (query.uniqueResult() == null) {
@@ -35,23 +48,28 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	public boolean save(User user) {
-		try{
-			sessionFactory.getCurrentSession().save(user);
+		try {
+			Session session = sessionFactory.openSession();
+			session.beginTransaction();
+			session.save(user);
+			session.getTransaction().commit();
+			session.close();
 			return true;
-		}catch (HibernateException e){
+		} catch (HibernateException e) {
 			e.printStackTrace();
 			return false;
 		}
-		
+
 	}
 
 	public boolean update(User user) {
-		try{
-			sessionFactory.getCurrentSession().save(user);
+		try {
+			sessionFactory.getCurrentSession().update(user);
 			return true;
-		}catch (HibernateException e){
+		} catch (HibernateException e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
+
 }

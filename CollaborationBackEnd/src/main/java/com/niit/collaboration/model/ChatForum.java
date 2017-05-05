@@ -3,40 +3,49 @@ package com.niit.collaboration.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name = "forum")
+@Table(name = "chat_forum")
 @Component
 public class ChatForum extends BaseDomain{
 
 	@Id
-	private int id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int chat_forum_id;
 	
+	/*@ManyToOne
 	private String userId;
-
+*/
 	private String message;
 
 	private Date createdDate;
-
-	public int getId() {
-		return id;
+	
+	
+	
+	//getters and setters
+	
+	public int getChat_forum_id() {
+		return chat_forum_id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setChat_forum_id(int chat_forum_id) {
+		this.chat_forum_id = chat_forum_id;
 	}
 
-	public String getUserId() {
+	/*public String getUserId() {
 		return userId;
 	}
 
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
+	}*/
 
 	public String getMessage() {
 		return message;
