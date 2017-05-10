@@ -43,7 +43,7 @@ public class UserRestServices {
 	}
 	
 		/*@RequestMapping(value ="/login" , method = RequestMethod.POST)
-		public ResponseEntity<User> login(@RequestBody User user) {
+		public ResponseEntity<?> login(@RequestBody User user , HttpSession session) {
 			
 			User loginUser = userDAO.validate(user.getUser_id(),user.getPassword());
 			

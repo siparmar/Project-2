@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Filter - Number</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+
+	<div ng-controller="myController">
+		<div style="background-color: yellow" align="center">{{title |
+			uppercase}}</div>
+		<p>{{name}}</p>
+		<p>{{pubdate | date}}</p>
+		<p>{{price}}</p>
+		<p>Price in text: {{price | number}}</p>
+	</div>
+</body>
+
+<script src="../Filters/NumberController.js"></script>
+</html>
