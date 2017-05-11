@@ -2,6 +2,8 @@ package com.niit.collaboration.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,8 +29,8 @@ public class UserRestServices {
 	private Session session;
 	
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ResponseEntity<?> registerUser(@RequestBody User user) {
+	@RequestMapping(value = "/Register", method = RequestMethod.POST)
+	public ResponseEntity<?> register(@RequestBody User user) {
 		// client will send only username, password, email, role
 
 		User savedUser = userDAO.save(user);
@@ -42,27 +44,23 @@ public class UserRestServices {
 		}
 	}
 	
-		/*@RequestMapping(value ="/login" , method = RequestMethod.POST)
-		public ResponseEntity<?> login(@RequestBody User user , HttpSession session) {
+		/*@RequestMapping(value ="/Login" , method = RequestMethod.POST)
+		public ResponseEntity<?> login(@RequestBody User user_id , HttpSession session , User password) {
 			
-			User loginUser = userDAO.validate(user.getUser_id(),user.getPassword());
-			
-			if (loginUser == null){
-				loginUser = new User();
-				loginUser.setErrorCode("404");
-				loginUser.setErrorMessage("Invalid credentials . please enter valid credentials");
+			User validUser = userDAO.validate(user_id, password);
+			if (validUser == null){
+				Error error = new Error("Incorrecct credentials");
+				return new ResponseEntity<Error>(error , HttpStatus.UNAUTHORIZED);
 			}else{
-				loginUser.setErrorCode("200");
-				loginUser.setErrorMessage("You have successfully logged in");
-				loginUser.setIsOnline('Y');
+				session.setAttribute("user", validUser);
+				userDAO.update(validUser);
+				return new ResponseEntity<User>(validUser, HttpStatus.OK);
 				
-				session.setAttribute("loggedInUserID", user.getUser_id());
-				session.setAttribute("loggedInUserRole", user.getRole());
-				return new ResponseEntity<User>(user , HttpStatus.OK);
-				}
-			
+			}
 			
 		}
-*/
+		*/
+		
+
 	}
 
